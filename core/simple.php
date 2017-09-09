@@ -13,6 +13,7 @@ class simple
    */
   public static function run()
   {
+    \core\lib\log::init();
     $route = new \core\lib\route(); //实例化路由类
     $ctrlClass = $route->ctrl;
     $action = $route->action;
@@ -21,7 +22,8 @@ class simple
     if(is_file($ctrlFile)){
       include $ctrlFile;
       $ctrl = new $cltrlClass();
-      $ctrl->index();
+      $ctrl->$action();
+      \core\lib\log::log('ctrl:'.$ctrlClass.'    '.'action'.$action);
     }else{
       throw new \Exception('找不到控制器'.$ctrlClass);
     }
@@ -62,9 +64,12 @@ class simple
   public function display($file)
   {
     $file = APP.'/views/'.$file ;
-    if(is_file($file)){
-      extract($this->assign);
-      include $file;
-    }
+    $loader = new \Twig_Loader_Filesystem(APP.'/views');
+    $twig = new \Twig_Environment($loader, array(
+      'cache' => SF.'/cache/twig',
+      'debug' => DEBUG
+    ));
+    $template = $twig->load('index.html');
+    $template->display($this->assign?$this->assign:'');
   }
 }

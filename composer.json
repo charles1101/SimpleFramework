@@ -1,0 +1,21 @@
+{
+  "name":"SimpleFramework",
+  "description":"PHP Framework",
+  "type":"Framework",
+  "keywords":[
+    "PHP","PHP Framework","Simple","SimpleFramework"
+  ],
+  "authors":[
+    {
+      "name": "charles",
+      "homepage": "https://github.com/charles1101"
+    }
+  ],
+  "require":{
+    "php":">=5.3.0",
+    "filp/whoops":"*",
+    "symfony/var-dumper":"*",
+    "catfan/medoo":"*",
+    "twig/twig":"*"
+  }
+}

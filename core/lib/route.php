@@ -1,5 +1,6 @@
 <?php
 namespace core\lib;
+use core\lib\conf;
 /**
  * 路由类
  */
@@ -27,7 +28,7 @@ class route
         $this->action =$patharr[1];
         unset($patharr[1]);
       }else{
-        $this->action = 'index';
+        $this->action = conf::get('ACTION','route');
       }
       //URL多余部分转换成GET方法。如id/1/str/2/test/3
       $count = count($patharr) + 2;
@@ -39,8 +40,8 @@ class route
         $i = $i + 2;
       }
     }else{
-      $this->ctrl = 'index';
-      $this->action = 'index';
+      $this->ctrl = conf::get('CTRL','route');
+      $this->action = conf::get('ACTION','route');
     }
   }
 }
