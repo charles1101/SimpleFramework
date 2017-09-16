@@ -1,17 +1,17 @@
 <?php
 namespace app\ctrl;
-use core\lib\model;
+use core\simple;
 /**
  * 控制器类。类名与方法名重复时，方法会变成初始化的方法，所以类名用indexCtrl
  */
-class indexCtrl extends \core\simple
+class indexCtrl extends simple
 {
   /**
    * 渲染模板
    */
   public function index()
   {
-    $data = 'hello world';
+    $data = 'hello world !';
     $assign = $this->assign('data',$data);
     $this->display('index.html');
   }
